@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/Focus8Library/CompanyService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Focus8LibDS" />
+  <xs:element name="GetCompanyList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCompanyListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Focus8LibDS" minOccurs="0" name="GetCompanyListResult" nillable="true" type="q1:CompanyResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DoLogin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="iCompanyId" type="xs:int" />
+        <xs:element minOccurs="0" name="sUserName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sPassword" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sMachineName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="bWithUserValues" type="xs:boolean" />
+        <xs:element minOccurs="0" name="bWithMenus" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DoLoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Focus8LibDS" minOccurs="0" name="DoLoginResult" nillable="true" type="q2:LoginResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UserLogin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="iCompanyId" type="xs:int" />
+        <xs:element minOccurs="0" name="sUserName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sPassword" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sMachineName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sVersionDetails" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UserLoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Focus8LibDS" minOccurs="0" name="UserLoginResult" nillable="true" type="q3:UserLoginResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCompanyLogo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="iCompanyId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCompanyLogoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Focus8LibDS" minOccurs="0" name="GetCompanyLogoResult" nillable="true" type="q4:ResultInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllLanguages">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="iCompanyId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllLanguagesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Focus8LibDS" minOccurs="0" name="GetAllLanguagesResult" nillable="true" type="q5:LanguageResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllDashboardsName">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllDashboardsNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Focus8LibDS" minOccurs="0" name="GetAllDashboardsNameResult" nillable="true" type="q6:DashboardResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDashletInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="iDashboardID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDashletInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Focus8LibDS" minOccurs="0" name="GetDashletInfoResult" nillable="true" type="q7:DashletInfoResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDashletData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="iDashletId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDashletDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Focus8LibDS" minOccurs="0" name="GetDashletDataResult" nillable="true" type="q8:RssWebDashletResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetInfoPanelData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="iDashletId" type="xs:int" />
+        <xs:element minOccurs="0" name="iRecId" type="xs:int" />
+        <xs:element minOccurs="0" name="iTagId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetInfoPanelDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Focus8LibDS" minOccurs="0" name="GetInfoPanelDataResult" nillable="true" type="q9:InfoPanelDataResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNotesDashletData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="iDashletId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNotesDashletDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Focus8LibDS" minOccurs="0" name="GetNotesDashletDataResult" nillable="true" type="q10:NotesDashletResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Logout">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LogoutResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Focus8LibDS" minOccurs="0" name="LogoutResult" nillable="true" type="q11:ResultInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsValidSession">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="iCompanyId" type="xs:int" />
+        <xs:element minOccurs="0" name="sUserName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sPassword" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sMachineName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsValidSessionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Focus8LibDS" minOccurs="0" name="IsValidSessionResult" nillable="true" type="q12:UserLoginResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ValidateSession">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ValidateSessionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Focus8LibDS" minOccurs="0" name="ValidateSessionResult" nillable="true" type="q13:ResultInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Test">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TestResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Focus8LibDS" minOccurs="0" name="TestResult" nillable="true" type="q14:LoginResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DashTest">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DashTestResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Focus8LibDS" minOccurs="0" name="DashTestResult" nillable="true" type="q15:DashboardResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RptDash">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RptDashResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GenerateAccessToken">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sClientSecret" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sSession" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GenerateAccessTokenResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GenerateAccessTokenResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPosSettings">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sDeviceId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="iVoucherType" type="xs:int" />
+        <xs:element minOccurs="0" name="iOrderType" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPosSettingsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Focus8LibDS" minOccurs="0" name="GetPosSettingsResult" nillable="true" type="q16:PosSettings" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMenu">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="languageId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMenuResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Focus8LibDS" minOccurs="0" name="GetMenuResult" nillable="true" type="q17:ArrayOfMenuPermissions" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCompanyCodefromId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="iCompanyId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCompanyCodefromIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Focus8LibDS" minOccurs="0" name="GetCompanyCodefromIdResult" nillable="true" type="q18:ResultInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

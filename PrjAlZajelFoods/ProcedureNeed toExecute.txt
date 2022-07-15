@@ -1,0 +1,32 @@
+﻿CREATE Procedure Proc_LN_Vnd_Blk_Pnd                  
+(@PId varchar(max))                  
+as                  
+begin                  
+                  
+SELECT cCore_Vouchers_0.sAbbr+':'+tCore_Header_0.sVoucherNo[VNo],convert(Varchar(10),dbo.IntToDate(tCOre_Header_0.iDate),105)[Date],                  
+ ParentRef.Currency [Currency],[CurId], round(mBaseAmount,2)[Req],iRef[RefId], abs(fOrigNet)fOrigNet,abs(fQuantity)Quantity--,[Narration]                  
+FROM ( SELECT c.iCurrencyId[CurId], c.sName[Currency], iRef, tCore_Refrn_0.iCode,                  
+SUM(CASE WHEN iRefType < 2 THEN tCore_Refrn_0.iBodyId ELSE 0 END)[iBodyId],-- th.sNarration[Narration],                  
+sum(round(case when tCore_Refrn_0.mBaseAmount<0 then (abs(tCore_Refrn_0.mBaseAmount)+isnull(tCore_Refrn_0.mExchangeDiff,0)) * sign(tCore_Refrn_0.mBaseAmount)                   
+else (abs(tCore_Refrn_0.mBaseAmount)-isnull(tCore_Refrn_0.mExchangeDiff,0)) * sign(tCore_Refrn_0.mBaseAmount) end,7))[mBaseAmount],                   
+SUM(CASE WHEN iRefType < 2 THEN iRefType ELSE 0 END) [iRefType], SUM(CASE WHEN iRefType < 2 THEN mBaseAmount ELSE 0 END) [mInvoiceAmount], SUM(CASE WHEN iRefType < 2 THEN tCore_Refrn_0.iDueDate ELSE 0 END)iDueDate, sum(mAmount) [mAmount],                
+SUM(CASE WHEN iRefType < 2 THEN tCore_Data_0.iTransactionId ELSE 0 END)[iTransactionId]                   
+FROM tCore_Refrn_0                   
+JOIN tCore_Data_0  ON tCore_Data_0.iBodyId = tCore_Refrn_0.iBodyId                   
+join mCore_Currency c on c.iCurrencyId=tCore_Data_0 .iCurrencyId                  
+JOIN tCore_Header_0  ON tCore_Data_0.iHeaderId = tCore_Header_0.iHeaderId                    
+WHERE tCore_Data_0.bSuspendUpdateFA in(0, 1) AND tCore_Data_0.iAuthStatus in(0,1) AND tCore_Header_0.bSuspended = 0 and (tCore_Header_0.iVoucherType& 0xff00 not in (7168,5889 ,5888) or bPdc=0 or tCore_Data_0.bUpdateFA=1) AND                   
+(tCore_Header_0.iDate BETWEEN 0 AND dbo.DateToInt(convert(varchar(10),getdate(),126)) or tCore_Header_0.iVoucherType =3335) AND (tCore_Data_0.bUpdateFA = 1 OR tCore_Data_0.iType = 5)                   
+and tCore_Header_0.sVoucherNo in (@PId)        
+GROUP BY iRef, tCore_Refrn_0.iCode,c.sName,c.iCurrencyId ) ParentRef     --& 0xff00            
+JOIN tCore_Data_0 ON tCore_Data_0.iBodyId = ParentRef.iBodyId               
+JOIN tCore_Header_0 ON tCore_Data_0.iHeaderId = tCore_Header_0.iHeaderId                 
+JOIN cCore_Vouchers_0 ON cCore_Vouchers_0.iVoucherType = tCore_Header_0.iVoucherType              
+JOIN vrCore_Account BookNo ON BookNo.iMasterId = ParentRef.iCode AND BookNo.iTreeId = 0               
+JOIN vrCore_Account Code ON Code.iMasterId = tCore_Data_0.iBookNo AND Code.iTreeId = 0                 
+LEFT JOIN tCore_Indta_0 ON tCore_Data_0.iBodyId = tCore_Indta_0.iBodyId WHERE tCore_Data_0.bSuspendUpdateFA in(0,1)               
+AND tCore_Header_0.bSuspended = 0 AND tCore_Data_0.iAuthStatus IN(0,1) AND                   
+(tCore_Header_0.iDate BETWEEN 0 AND dbo.DateToInt(convert(varchar(10),getdate(),126))or tCore_Header_0.iVoucherType =3335)   --& 0xff00            
+AND (tCore_Data_0.bUpdateFA = 1 OR tCore_Data_0.iType = 5)                  
+AND mAmount < 0 ORDER BY ParentRef.iBodyId                  
+END 

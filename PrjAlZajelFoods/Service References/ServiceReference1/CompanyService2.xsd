@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Focus8LibDS" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Focus8LibDS" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/Focus8Library/CompanyService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="CompanyResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ResultInfo" />
+      <xs:element minOccurs="0" name="arrData" nillable="true" type="tns:ArrayOfCompanyData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompanyResult" nillable="true" type="tns:CompanyResult" />
+  <xs:complexType name="ResultInfo">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="arrTransIds" nillable="true" type="q1:ArrayOflong" />
+      <xs:element minOccurs="0" name="lResult" type="xs:long" />
+      <xs:element minOccurs="0" name="sValue" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResultInfo" nillable="true" type="tns:ResultInfo" />
+  <xs:complexType name="ArrayOfCompanyData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CompanyData" nillable="true" type="tns:CompanyData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCompanyData" nillable="true" type="tns:ArrayOfCompanyData" />
+  <xs:complexType name="CompanyData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="iCompanyAccDate" type="xs:int" />
+      <xs:element minOccurs="0" name="sCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompanyData" nillable="true" type="tns:CompanyData" />
+  <xs:complexType name="LoginResult">
+    <xs:sequence>
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Alert" nillable="true" type="q2:ArrayOfint" />
+      <xs:element minOccurs="0" name="LoginInfo" nillable="true" type="tns:LoginInfo" />
+      <xs:element minOccurs="0" name="MenuInfo" nillable="true" type="tns:ArrayOfMenuInfo" />
+      <xs:element minOccurs="0" name="Preferences" nillable="true" type="tns:Preferences" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ResultInfo" />
+      <xs:element minOccurs="0" name="iDashboardId" type="xs:int" />
+      <xs:element minOccurs="0" name="iLanguageCount" type="xs:int" />
+      <xs:element minOccurs="0" name="objUserValuesResult" nillable="true" type="tns:IdNamesResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoginResult" nillable="true" type="tns:LoginResult" />
+  <xs:complexType name="LoginInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="iEmpId" type="xs:int" />
+      <xs:element minOccurs="0" name="iLogId" type="xs:int" />
+      <xs:element minOccurs="0" name="iUserId" type="xs:int" />
+      <xs:element minOccurs="0" name="sLoginName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sSession" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoginInfo" nillable="true" type="tns:LoginInfo" />
+  <xs:complexType name="ArrayOfMenuInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MenuInfo" nillable="true" type="tns:MenuInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMenuInfo" nillable="true" type="tns:ArrayOfMenuInfo" />
+  <xs:complexType name="MenuInfo">
+    <xs:sequence>
+      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="arrActionIds" nillable="true" type="q3:ArrayOfint" />
+      <xs:element minOccurs="0" name="iMenuId" type="xs:int" />
+      <xs:element minOccurs="0" name="iModuleType" type="xs:int" />
+      <xs:element minOccurs="0" name="iParentId" type="xs:int" />
+      <xs:element minOccurs="0" name="iType" type="xs:int" />
+      <xs:element minOccurs="0" name="menuInfo" nillable="true" type="tns:ArrayOfMenuInfo" />
+      <xs:element minOccurs="0" name="sMenuName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MenuInfo" nillable="true" type="tns:MenuInfo" />
+  <xs:complexType name="Preferences">
+    <xs:sequence>
+      <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetPrefTags" nillable="true" type="q4:ArrayOfint" />
+      <xs:element minOccurs="0" name="bCheckNegativeStock" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bWarnAndAllow" type="xs:boolean" />
+      <xs:element minOccurs="0" name="iNoOfDecimals" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Preferences" nillable="true" type="tns:Preferences" />
+  <xs:complexType name="IdNamesResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdNames" nillable="true" type="tns:ArrayOfIdNamePair" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ResultInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IdNamesResult" nillable="true" type="tns:IdNamesResult" />
+  <xs:complexType name="ArrayOfIdNamePair">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IdNamePair" nillable="true" type="tns:IdNamePair" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfIdNamePair" nillable="true" type="tns:ArrayOfIdNamePair" />
+  <xs:complexType name="IdNamePair">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Tag" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="iId" type="xs:int" />
+      <xs:element minOccurs="0" name="sAlias" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IdNamePair" nillable="true" type="tns:IdNamePair" />
+  <xs:complexType name="UserLoginResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LoginInfo" nillable="true" type="tns:LoginInfo" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ResultInfo" />
+      <xs:element minOccurs="0" name="iRightsCount" type="xs:int" />
+      <xs:element minOccurs="0" name="lstMasterTypeSearchBy" nillable="true" type="tns:ArrayOfMasterTypeSearchBy" />
+      <xs:element minOccurs="0" name="lstWMSMenus" nillable="true" type="tns:ArrayOfWMSMenus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserLoginResult" nillable="true" type="tns:UserLoginResult" />
+  <xs:complexType name="ArrayOfMasterTypeSearchBy">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MasterTypeSearchBy" nillable="true" type="tns:MasterTypeSearchBy" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMasterTypeSearchBy" nillable="true" type="tns:ArrayOfMasterTypeSearchBy" />
+  <xs:complexType name="MasterTypeSearchBy">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bSearchBy" type="xs:boolean" />
+      <xs:element minOccurs="0" name="iMasterTypeId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MasterTypeSearchBy" nillable="true" type="tns:MasterTypeSearchBy" />
+  <xs:complexType name="ArrayOfWMSMenus">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WMSMenus" nillable="true" type="tns:WMSMenus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWMSMenus" nillable="true" type="tns:ArrayOfWMSMenus" />
+  <xs:complexType name="WMSMenus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bAccess" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bViewStock" type="xs:boolean" />
+      <xs:element minOccurs="0" name="iMenuId" type="xs:int" />
+      <xs:element minOccurs="0" name="sCaption" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sMenuName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WMSMenus" nillable="true" type="tns:WMSMenus" />
+  <xs:complexType name="LanguageResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Languages" nillable="true" type="tns:ArrayOfLanguages" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ResultInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LanguageResult" nillable="true" type="tns:LanguageResult" />
+  <xs:complexType name="ArrayOfLanguages">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Languages" nillable="true" type="tns:Languages" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLanguages" nillable="true" type="tns:ArrayOfLanguages" />
+  <xs:complexType name="Languages">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="iLanguageId" type="xs:int" />
+      <xs:element minOccurs="0" name="sLanguageName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Languages" nillable="true" type="tns:Languages" />
+  <xs:complexType name="DashboardResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DashboardInfo" nillable="true" type="tns:ArrayOfDashboardInfo" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ResultInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DashboardResult" nillable="true" type="tns:DashboardResult" />
+  <xs:complexType name="ArrayOfDashboardInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DashboardInfo" nillable="true" type="tns:DashboardInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDashboardInfo" nillable="true" type="tns:ArrayOfDashboardInfo" />
+  <xs:complexType name="DashboardInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bIsDefault" type="xs:boolean" />
+      <xs:element minOccurs="0" name="iCatagoryId" type="xs:int" />
+      <xs:element minOccurs="0" name="iId" type="xs:int" />
+      <xs:element minOccurs="0" name="sCatagoryName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DashboardInfo" nillable="true" type="tns:DashboardInfo" />
+  <xs:complexType name="DashletInfoResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DashboardId" type="xs:int" />
+      <xs:element minOccurs="0" name="Dashlet" nillable="true" type="tns:ArrayOfDashlet" />
+      <xs:element minOccurs="0" name="NoofColumns" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="NoofRows" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ResultInfo" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DashletInfoResult" nillable="true" type="tns:DashletInfoResult" />
+  <xs:complexType name="ArrayOfDashlet">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Dashlet" nillable="true" type="tns:Dashlet" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDashlet" nillable="true" type="tns:ArrayOfDashlet" />
+  <xs:complexType name="Dashlet">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Column" type="xs:int" />
+      <xs:element minOccurs="0" name="ColumnSpan" type="xs:int" />
+      <xs:element minOccurs="0" name="DashletId" type="xs:int" />
+      <xs:element minOccurs="0" name="DashletType" type="xs:int" />
+      <xs:element minOccurs="0" name="Row" type="xs:int" />
+      <xs:element minOccurs="0" name="RowSpan" type="xs:int" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="bIsGraph" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Dashlet" nillable="true" type="tns:Dashlet" />
+  <xs:complexType name="RssWebDashletResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ResultInfo" />
+      <xs:element minOccurs="0" name="sUrl" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RssWebDashletResult" nillable="true" type="tns:RssWebDashletResult" />
+  <xs:complexType name="InfoPanelDataResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InfoPanelData" nillable="true" type="tns:ArrayOfValueNames" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ResultInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InfoPanelDataResult" nillable="true" type="tns:InfoPanelDataResult" />
+  <xs:complexType name="ArrayOfValueNames">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ValueNames" nillable="true" type="tns:ValueNames" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfValueNames" nillable="true" type="tns:ArrayOfValueNames" />
+  <xs:complexType name="ValueNames">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="sName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ValueNames" nillable="true" type="tns:ValueNames" />
+  <xs:complexType name="NotesDashletResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ResultInfo" />
+      <xs:element minOccurs="0" name="sNotes" nillable="true" type="tns:ArrayOfIdNamePair" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NotesDashletResult" nillable="true" type="tns:NotesDashletResult" />
+  <xs:complexType name="PosSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ResultInfo" />
+      <xs:element minOccurs="0" name="bIsCreditVATEnable" type="xs:boolean" />
+      <xs:element minOccurs="0" name="iCounterId" type="xs:int" />
+      <xs:element minOccurs="0" name="iCurrencyDecimals" type="xs:int" />
+      <xs:element minOccurs="0" name="iCurrencyId" type="xs:int" />
+      <xs:element minOccurs="0" name="iDayInDateTime" type="xs:int" />
+      <xs:element minOccurs="0" name="iJurisdiction" type="xs:int" />
+      <xs:element minOccurs="0" name="iOutletId" type="xs:int" />
+      <xs:element minOccurs="0" name="iPlaceofSupply" type="xs:int" />
+      <xs:element minOccurs="0" name="iTaxable" type="xs:int" />
+      <xs:element minOccurs="0" name="lstBankCardTypes" nillable="true" type="tns:ArrayOfCardTypes" />
+      <xs:element minOccurs="0" name="lstBodypanel" nillable="true" type="tns:ArrayOfBodyPanel" />
+      <xs:element minOccurs="0" name="lstHeaderExtraFields" nillable="true" type="tns:ArrayOfHeaderExtraFieldsDtls" />
+      <xs:element minOccurs="0" name="lstTaxRates" nillable="true" type="tns:ArrayOfTaxRatesDtls" />
+      <xs:element minOccurs="0" name="objPosAcc" nillable="true" type="tns:PosAccounts" />
+      <xs:element minOccurs="0" name="sCounterName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sCurrencySymbol" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sOutletName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PosSettings" nillable="true" type="tns:PosSettings" />
+  <xs:complexType name="ArrayOfCardTypes">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CardTypes" nillable="true" type="tns:CardTypes" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCardTypes" nillable="true" type="tns:ArrayOfCardTypes" />
+  <xs:complexType name="CardTypes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Image" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="dCardCharges" type="xs:decimal" />
+      <xs:element minOccurs="0" name="iBankAccountId" type="xs:int" />
+      <xs:element minOccurs="0" name="iCardChargesAccountId" type="xs:int" />
+      <xs:element minOccurs="0" name="iCardType" type="xs:int" />
+      <xs:element minOccurs="0" name="iId" type="xs:int" />
+      <xs:element minOccurs="0" name="sName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CardTypes" nillable="true" type="tns:CardTypes" />
+  <xs:complexType name="ArrayOfBodyPanel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BodyPanel" nillable="true" type="tns:BodyPanel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBodyPanel" nillable="true" type="tns:ArrayOfBodyPanel" />
+  <xs:complexType name="BodyPanel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bDiscountField" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bPriceBookValue" type="xs:boolean" />
+      <xs:element minOccurs="0" name="fDefaultValue" type="xs:float" />
+      <xs:element minOccurs="0" name="iAcToPost" type="xs:int" />
+      <xs:element minOccurs="0" name="iColMap" type="xs:int" />
+      <xs:element minOccurs="0" name="iFieldBehaviour" type="xs:int" />
+      <xs:element minOccurs="0" name="iIsPerPax" type="xs:int" />
+      <xs:element minOccurs="0" name="iVoucherType" type="xs:int" />
+      <xs:element minOccurs="0" name="nFieldType" type="xs:short" />
+      <xs:element minOccurs="0" name="nInputValue" type="xs:short" />
+      <xs:element minOccurs="0" name="nOutputValue" type="xs:short" />
+      <xs:element minOccurs="0" name="nPriceBookIndex" type="xs:short" />
+      <xs:element minOccurs="0" name="nType" type="xs:short" />
+      <xs:element minOccurs="0" name="sAlias" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BodyPanel" nillable="true" type="tns:BodyPanel" />
+  <xs:complexType name="ArrayOfHeaderExtraFieldsDtls">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HeaderExtraFieldsDtls" nillable="true" type="tns:HeaderExtraFieldsDtls" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHeaderExtraFieldsDtls" nillable="true" type="tns:ArrayOfHeaderExtraFieldsDtls" />
+  <xs:complexType name="HeaderExtraFieldsDtls">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bAuditTrail" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bCannotExport" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bCannotImport" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bHeader" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bHidden" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bInformationField" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bMandatory" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bMassUpdate" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bMergeField" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bNotAvailableForReport" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bReadOnly" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bSpellCheck" type="xs:boolean" />
+      <xs:element minOccurs="0" name="dMaximumValue" type="xs:double" />
+      <xs:element minOccurs="0" name="dMinimumValue" type="xs:double" />
+      <xs:element minOccurs="0" name="iDataType" type="xs:int" />
+      <xs:element minOccurs="0" name="iDisplayControlType" type="xs:int" />
+      <xs:element minOccurs="0" name="iFieldId" type="xs:int" />
+      <xs:element minOccurs="0" name="iMasterTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="iMaxLength" type="xs:int" />
+      <xs:element minOccurs="0" name="iTemplateId" type="xs:int" />
+      <xs:element minOccurs="0" name="iVoucherType" type="xs:int" />
+      <xs:element minOccurs="0" name="sDataTypeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sDefaultValue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sDisplayControlTypeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sFieldCaption" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sFieldName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sTemplateName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sVoucherTypeName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HeaderExtraFieldsDtls" nillable="true" type="tns:HeaderExtraFieldsDtls" />
+  <xs:complexType name="ArrayOfTaxRatesDtls">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TaxRatesDtls" nillable="true" type="tns:TaxRatesDtls" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTaxRatesDtls" nillable="true" type="tns:ArrayOfTaxRatesDtls" />
+  <xs:complexType name="TaxRatesDtls">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dPerc" type="xs:decimal" />
+      <xs:element minOccurs="0" name="iJurisdiction" type="xs:int" />
+      <xs:element minOccurs="0" name="iPlace" type="xs:int" />
+      <xs:element minOccurs="0" name="iTaxCat" type="xs:int" />
+      <xs:element minOccurs="0" name="iTaxCode" type="xs:int" />
+      <xs:element minOccurs="0" name="iType" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TaxRatesDtls" nillable="true" type="tns:TaxRatesDtls" />
+  <xs:complexType name="PosAccounts">
+    <xs:sequence>
+      <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="arrAdvanceIsMandatMemTypeArray" nillable="true" type="q5:ArrayOfanyType" />
+      <xs:element minOccurs="0" name="bAdvanceIsMandatForAll" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bAdvanceIsMandatory" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bAllowEditPreOrder" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bAllowEditingOfModifiers" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bAllowManualInputIfRateZero" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bEODAppliesTo" type="xs:short" />
+      <xs:element minOccurs="0" name="bTransDateAsDayInDate" type="xs:boolean" />
+      <xs:element minOccurs="0" name="dRoundoffValue" type="xs:double" />
+      <xs:element minOccurs="0" name="iAccountingTag" type="xs:int" />
+      <xs:element minOccurs="0" name="iCardAcc" type="xs:int" />
+      <xs:element minOccurs="0" name="iCashAcc" type="xs:int" />
+      <xs:element minOccurs="0" name="iCustomerAc" type="xs:int" />
+      <xs:element minOccurs="0" name="iDefaultEmployee" type="xs:int" />
+      <xs:element minOccurs="0" name="iDefaultMemberId" type="xs:int" />
+      <xs:element minOccurs="0" name="iDefaultSearchByMember" type="xs:int" />
+      <xs:element minOccurs="0" name="iDefaultSerachBy" type="xs:int" />
+      <xs:element minOccurs="0" name="iMinCharToSearch" type="xs:int" />
+      <xs:element minOccurs="0" name="iNoDecimalsForQty" type="xs:int" />
+      <xs:element minOccurs="0" name="iNumberOfDecimalInFooter" type="xs:int" />
+      <xs:element minOccurs="0" name="iPOTableId" type="xs:int" />
+      <xs:element minOccurs="0" name="iPreOrderCustomerAccount" type="xs:int" />
+      <xs:element minOccurs="0" name="iPreOrderSalesAccount" type="xs:int" />
+      <xs:element minOccurs="0" name="iRoundOffType" type="xs:int" />
+      <xs:element minOccurs="0" name="iSalesAc" type="xs:int" />
+      <xs:element minOccurs="0" name="iSearchCriteria" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PosAccounts" nillable="true" type="tns:PosAccounts" />
+  <xs:complexType name="ArrayOfMenuPermissions">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MenuPermissions" nillable="true" type="tns:MenuPermissions" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMenuPermissions" nillable="true" type="tns:ArrayOfMenuPermissions" />
+  <xs:complexType name="MenuPermissions">
+    <xs:sequence>
+      <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="arrActionId" nillable="true" type="q6:ArrayOfint" />
+      <xs:element minOccurs="0" name="bAccessibility" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="bAddDesc" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bAddIcon" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bAddSeperator" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bIsGroup" type="xs:boolean" />
+      <xs:element minOccurs="0" name="iMenuGroupId" type="xs:int" />
+      <xs:element minOccurs="0" name="iMenuId" type="xs:int" />
+      <xs:element minOccurs="0" name="iMenuIndex" type="xs:int" />
+      <xs:element minOccurs="0" name="iMenuType" type="xs:int" />
+      <xs:element minOccurs="0" name="iTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="sMenuName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sMenuText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sShortcutKey" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sURL" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MenuPermissions" nillable="true" type="tns:MenuPermissions" />
+</xs:schema>
