@@ -48,7 +48,7 @@ namespace PrjAlZajelFoods
         {
             try
             {
-                GetData();
+                GetData2();
             }
             catch (Exception ex)
             {
@@ -63,13 +63,12 @@ namespace PrjAlZajelFoods
         int ExpenseVal = 1;
         int PayVal = 1;
         static string Content = ConfigurationManager.AppSettings["Content"];
-
         public void GetData()
         {
+            //Old Method of posting sequence. first posting all invoice. if all posted without any failure then cash rec. then pdc, then sales return then payment.If any of the posting got error, the whole cycle will stop there.
             GetExternalData clsd = new GetExternalData();
 
             DataSet dsSI = clsd.GetExSales(10); //For Both Types 10 and 11 given as 10 //Sales Invoices
-            //if (dsSI.Tables[0].Rows.Count > 0)
             {
                 #region If Section
                 SIVal = PostingSI(dsSI);
@@ -117,161 +116,63 @@ namespace PrjAlZajelFoods
                 }
                 #endregion
             }
-            //else
-            //{
-            //    #region ElseSection
-            //    DataSet dsSR = clsd.GetExSales(12); // Sales Returns
-            //    if (dsSR.Tables[0].Rows.Count > 0)
-            //    {
-            //        #region SRIFCase
-            //        SRVal = PostingReturn(dsSR);
-
-            //        if (SRVal > 0)
-            //        {
-            //            DataSet dsCash = clsd.GetExCash(1);//Cash
-            //            if (dsCash.Tables[0].Rows.Count > 0)
-            //            {
-            //                CashVal = PostingCash(dsCash);
-            //            }
-            //            if (CashVal > 0)
-            //            {
-            //                DataSet dsPDC = clsd.GetExCash(2);//PDC
-            //                if (dsPDC.Tables[0].Rows.Count > 0)
-            //                {
-            //                    PDCVal = PostingPDC(dsPDC);
-            //                }
-            //                if (PDCVal > 0)
-            //                {
-
-            //                    DataSet dsEEV = clsd.GetExEEV(1);//EEV
-            //                    if (dsEEV.Tables[0].Rows.Count > 0)
-            //                    {
-            //                        PostingEEV(dsEEV);
-            //                    }
-            //                }
-            //            }
-            //        }
-            //        #endregion
-            //    }
-            //    else
-            //    {
-            //        #region SRElseCase
-            //        DataSet dsCash = clsd.GetExCash(1);//Cash
-            //        if (dsCash.Tables[0].Rows.Count > 0)
-            //        {
-            //            #region CashIfCase
-            //            CashVal = PostingCash(dsCash);
-
-            //            if (CashVal > 0)
-            //            {
-            //                DataSet dsPDC = clsd.GetExCash(2);//PDC
-            //                if (dsPDC.Tables[0].Rows.Count > 0)
-            //                {
-            //                    PDCVal = PostingPDC(dsPDC);
-            //                }
-            //                if (PDCVal > 0)
-            //                {
-
-            //                    DataSet dsEEV = clsd.GetExEEV(1);//EEV
-            //                    if (dsEEV.Tables[0].Rows.Count > 0)
-            //                    {
-            //                        PostingEEV(dsEEV);
-            //                    }
-            //                }
-            //            }
-            //            #endregion
-            //        }
-            //        else
-            //        {
-            //            #region CashElseCase
-            //            DataSet dsPDC = clsd.GetExCash(2);//PDC
-            //            if (dsPDC.Tables[0].Rows.Count > 0)
-            //            {
-            //                PDCVal = PostingPDC(dsPDC);
-            //            }
-            //            if (PDCVal > 0)
-            //            {
-
-            //                DataSet dsEEV = clsd.GetExEEV(1);//EEV
-            //                if (dsEEV.Tables[0].Rows.Count > 0)
-            //                {
-            //                    PostingEEV(dsEEV);
-            //                }
-            //            }
-            //            #endregion
-            //        }
-            //        #endregion
-            //    }
-            //    #endregion
-            //}
+           
         }
-
-        //public void GetData()
-        //{
-        //    GetExternalData clsd = new GetExternalData();
-        //    //DataSet dsSI = clsd.GetExSales(10); //For Both Types 10 and 11 given as 10 //Sales Invoices
-        //    //if (dsSI.Tables[0].Rows.Count > 0)
-        //    //{
-        //    //    PostingSI(dsSI);
-        //    //}
-
-        //    DataSet dsCommon = clsd.GetCommonData(); // Common Data
-        //    if (dsCommon.Tables[0].Rows.Count > 0)
-        //    {
-        //        CommonPosting(dsCommon);
-        //    }
-
-        //    //DataSet dsL = clsd.GetExLoadRequest(2); // Load Request
-        //    //if (dsL.Tables[0].Rows.Count > 0)
-        //    //{
-
-        //    //    Posting(dsL);
-        //    //}
-
-        //    //DataSet dsT = clsd.GetExLoadRequest(6); //Transfer
-        //    //if (dsT.Tables[0].Rows.Count > 0)
-        //    //{
-        //    //    PostingTransfer(dsT);
-        //    //}
-
-        //    //DataSet dsO = clsd.GetExLoadRequest(3); //Offload
-        //    //if (dsO.Tables[0].Rows.Count > 0)
-        //    //{
-        //    //    PostingOff(dsO);
-        //    //}
-
-        //    //DataSet dsSI = clsd.GetExSales(10); //For Both Types 10 and 11 given as 10 //Sales Invoices
-        //    //if (dsSI.Tables[0].Rows.Count > 0)
-        //    //{
-        //    //    PostingSI(dsSI);
-        //    //}
-
-        //    //DataSet dsSR = clsd.GetExSales(12); // Sales Returns
-        //    //if (dsSR.Tables[0].Rows.Count > 0)
-        //    //{
-        //    //    PostingReturn(dsSR);
-        //    //}
-
-
-        //    //DataSet dsCash = clsd.GetExCash(1);//Cash
-        //    //if (dsCash.Tables[0].Rows.Count > 0)
-        //    //{
-        //    //    PostingCash(dsCash);
-        //    //}
-
-        //    //DataSet dsPDC = clsd.GetExCash(2);//PDC
-        //    //if (dsPDC.Tables[0].Rows.Count > 0)
-        //    //{
-        //    //    PostingPDC(dsPDC);
-        //    //}
-
-        //    //DataSet dsEEV = clsd.GetExEEV(1);//EEV
-        //    //if (dsEEV.Tables[0].Rows.Count > 0)
-        //    //{
-        //    //    PostingEEV(dsEEV);
-        //    //}
-        //}
-
+        public void GetData2()
+        {
+            //New method of posting order. The posting sequence is determining as per the document date.
+            try
+            {
+                GetExternalData clsd = new GetExternalData();
+                DataSet ds = clsd.GetAllTrans();
+                int _postStatus = 1;
+                if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        BL_Registry.SetLog("_postStatus = " + _postStatus.ToString());
+                        if (_postStatus > 0)
+                        {
+                            DataSet dst = new DataSet();
+                            if (Convert.ToInt32(dr["DocType"]) == 11 || Convert.ToInt32(dr["DocType"]) == 10)
+                            {
+                                //salesinv
+                                dst = clsd.GetInv(dr["DocumentNumber"].ToString());
+                                _postStatus = PostingSI(dst);
+                            }
+                            else if (Convert.ToInt32(dr["DocType"]) == 12)
+                            {
+                                //salesret
+                                dst = clsd.GetRet(dr["DocumentNumber"].ToString());
+                                _postStatus = PostingReturn(dst);
+                            }
+                            else if (Convert.ToInt32(dr["DocType"]) == 22)
+                            {
+                                //pdc
+                                dst = clsd.GetPDC(dr["DocumentNumber"].ToString());
+                                _postStatus = PostingPDC(dst);
+                            }
+                            else if (Convert.ToInt32(dr["DocType"]) == 21)
+                            {
+                                //cashrec
+                                dst = clsd.GetCashRec(dr["DocumentNumber"].ToString());
+                                _postStatus = PostingCash(dst);
+                            }
+                            else if (Convert.ToInt32(dr["DocType"]) == 23)
+                            {
+                                //payment
+                                dst = clsd.GetPay(dr["DocumentNumber"].ToString());
+                                _postStatus = PostingCashPayment(dst);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                BL_Registry.SetLogError(ex.Message);
+            }
+        }
         public string getServiceLink()
         {
             XmlDocument xmlDoc = new XmlDocument();
@@ -289,7 +190,6 @@ namespace PrjAlZajelFoods
                 strValue = "";
             return strValue;
         }
-
         string DoLogin()
         {
             HashData objHashRequest = new HashData();
@@ -323,7 +223,6 @@ namespace PrjAlZajelFoods
             }
             return "";
         }
-
         public string GetSessionId(int CompId)
         {
             string sSessionId = "";
@@ -371,7 +270,6 @@ namespace PrjAlZajelFoods
             }
             return sSessionId;
         }
-
         public class LoginInfo
         {
             public int iEmpId { get; set; }
@@ -402,7 +300,6 @@ namespace PrjAlZajelFoods
         {
             public UserLoginResult UserLoginResult { get; set; }
         }
-
         public partial class Temperatures
         {
             [JsonProperty("data")]
@@ -3503,7 +3400,16 @@ namespace PrjAlZajelFoods
                         {
                             BL_Registry.SetLog("Expiry Date = " + data["ExpiryDate"].ToString());
                             int Exdate =  data["ExpiryDate"].ToString().Trim() == "01-01-1900 12:00:00 AM" ? 0: BL_Registry.GetDateToInt(Convert.ToDateTime(data["ExpiryDate"].ToString()));
-                            int BatchChk = clsd.BatchCheck2(data["Batch"].ToString(), Exdate.ToString(),date.ToString());
+                            int BatchChk = 0;
+                            if (data["BatchId"].ToString() == "" || data["BatchId"] == null || data["BatchId"].ToString().ToLower() == "null")
+                            {
+                                BatchChk = clsd.BatchCheck3(data["Batch"].ToString(), Exdate.ToString(), date.ToString());
+                            }
+                            else
+                            {
+                                BatchChk = clsd.BatchCheck2(data["Batch"].ToString(), Exdate.ToString(), date.ToString(), data["BatchId"].ToString());
+                            }
+                            
                             if (BatchChk == 0)
                             {
                                 BL_Registry.SetLog("Cannot Find  Batch No '" + data["Batch"].ToString() + "' for TransactionNumber " + DocNo);
@@ -3513,8 +3419,15 @@ namespace PrjAlZajelFoods
                             {
 
                                 #region BatchQuery
-                                
-                                DataSet dsBatch = cls.GetBatchData(data["Batch"].ToString(), ItemId, WareId, date, Exdate, data["ProductUnit"].ToString());
+                                DataSet dsBatch;
+                                if (data["BatchId"].ToString() == "" || data["BatchId"] == null || data["BatchId"].ToString().ToLower() == "null")
+                                {
+                                     dsBatch = cls.GetBatchData3(data["Batch"].ToString(), ItemId, WareId, date, Exdate, data["ProductUnit"].ToString());
+                                }
+                                else
+                                {
+                                     dsBatch = cls.GetBatchData2(data["Batch"].ToString(), ItemId, WareId, date, Exdate, data["ProductUnit"].ToString(), data["BatchId"].ToString());
+                                }
                                 decimal dval = Convert.ToDecimal(data["Qty"]);
                                 decimal qty = Convert.ToDecimal(data["Qty"]);
                                 int iBodyCnt = 0;
@@ -3613,7 +3526,18 @@ namespace PrjAlZajelFoods
                                         }
 
                                         #endregion
-                                        Hashtable row = new Hashtable
+
+                                        #region Batcharr
+                                        // as per the new issue, passing batch along with batch id and batch no and qty -- 25/08/2022-- Rosmin
+                                        Hashtable batcharr = new Hashtable();
+                                        batcharr.Add("BatchId", dsBatch.Tables[0].Rows[c]["iBatchId"]);
+                                        batcharr.Add("BatchNo", data["Batch"].ToString());
+                                        batcharr.Add("Qty", FinalQty);
+
+                                        #endregion Batcharr
+                                        if (data["BatchId"].ToString() == "")
+                                        {
+                                            Hashtable row = new Hashtable
                                          {
                                              { "Item", ItemId},
                                              { "Description", GetItemDes(ItemId)},
@@ -3630,21 +3554,48 @@ namespace PrjAlZajelFoods
                                              //{ "Total Discount", TotalDisc },
                                              { "Add Charges", data["AddCharges"] },
                                              { "VAT", data["Vat"] },
-                                             { "Batch", Batch},
+                                             { "Batch", data["Batch"].ToString()},
                                         };
-                                        body.Add(row);
+                                            body.Add(row);
+                                        }
+                                        else
+                                        {
+                                            Hashtable row = new Hashtable
+                                         {
+                                             { "Item", ItemId},
+                                             { "Description", GetItemDes(ItemId)},
+                                             //{ "Description", data["Description"].ToString()},
+                                             { "TaxCode__Id", TaxCode},
+                                             { "SalesAC__Id", SalesAc},//need to change iDefAcc2
+                                             { "Unit__Id",  unitId},
+                                             { "Actual Quantity", data["ActualQuantity"] },
+                                             { "FOC Quantity", data["FOCQuantity"] },
+                                             { "Quantity", FinalQty},
+                                             { "Selling Price", data["SellingPrice"] },
+                                             //{ "Discount %", data["DiscPerc"] },
+                                             { "Input Discount Amt", dis },
+                                             //{ "Total Discount", TotalDisc },
+                                             { "Add Charges", data["AddCharges"] },
+                                             { "VAT", data["Vat"] },
+                                             { "Batch", batcharr},
+                                        };
+                                            body.Add(row);
+                                        }
                                     }
                                 }
                             }
                         }
                         if (outLoop)
                         {
+                            val = 0;
                             break;
                         }
                     }
                     if (outLoop)
                     {
-                        continue;
+                        val = 0;
+                        break;
+                        //continue;
                     }
                     #endregion
                     if (body.Count() > 0)
@@ -3894,7 +3845,17 @@ namespace PrjAlZajelFoods
                         //}
 
                         List<Hashtable> LinkList = new List<Hashtable>();
-                        DataSet TransDs = GetReturnDSTranID(data["LPONumber"].ToString(), ItemId, data["Batch"].ToString(), 1);
+                        DataSet TransDs;
+                        BL_Registry.SetLogError(data["BatchId"].ToString());
+                        if (data["BatchId"].ToString() == "" || data["BatchId"] == null || data["BatchId"].ToString().ToLower() == "null")
+                        {
+                            TransDs = GetReturnDSTranID2(data["LPONumber"].ToString(), ItemId, data["Batch"].ToString(), 1);
+                        }
+                        else
+                        {
+                            TransDs = GetReturnDSTranID(data["LPONumber"].ToString(), ItemId, data["Batch"].ToString(), 1, data["BatchId"].ToString());
+                        }
+                            
                         if (TransDs.Tables[0].Rows.Count != 0)
                         {
                             TransID = Convert.ToInt32(TransDs.Tables[0].Rows[0]["ibodyid"]);
@@ -3913,13 +3874,13 @@ namespace PrjAlZajelFoods
 
                             LinkList.Add(LinkRef);
                         }
-                        else
-                        {
-                            val = 0;
-                            BL_Registry.SetLogError("Reference Not found");
-                            outLoop = true;
-                            break;
-                        }
+                        //else
+                        //{
+                        //    val = 0;
+                        //    BL_Registry.SetLogError("Reference Not found");
+                        //    outLoop = true;
+                        //    break;
+                        //}
 
                         List<Hashtable> RefList = new List<Hashtable>();
 
@@ -3958,11 +3919,20 @@ namespace PrjAlZajelFoods
                             }
                             #endregion
                         }
+                        #region Batcharr
+                        // as per the new issue, passing batch along with batch id and batch no and qty -- 25/08/2022-- Rosmin
+                        Hashtable batcharr = new Hashtable();
+                        batcharr.Add("BatchId", data["BatchId"].ToString());
+                        batcharr.Add("BatchNo", data["Batch"].ToString());
+                        batcharr.Add("Qty", Convert.ToDecimal(data["ActualQuantity"].ToString()) + Convert.ToDecimal(data["FOCQuantity"].ToString()));
+                        #endregion Batcharr
 
                         Hashtable row = new Hashtable();
                         if (iref != 0)
                         {
-                            row = new Hashtable()
+                            if (data["BatchId"].ToString() == "")
+                            {
+                                row = new Hashtable()
                          {
                              { "Item", ItemId},
                              { "Description", GetItemDes(ItemId)},
@@ -3982,15 +3952,46 @@ namespace PrjAlZajelFoods
                              //{ "Input Discount Amt", data["LineDiscount"] },
                              { "Add Charges", data["AddCharges"] },
                              { "VAT", data["Vat"] },
-                             { "Batch", data["Batch"] },
+                             { "Batch", data["Batch"].ToString() },
                              { "MfgDate",MfgDate },
                              { "ExpDate", ExpDate },
                              { "Reference", RefList },
                          };
+                            }
+                            else
+                            {
+                                row = new Hashtable()
+                         {
+                             { "Item", ItemId},
+                             { "Description", GetItemDes(ItemId)},
+                             //{ "Description", data["Description"].ToString()},
+                             { "TaxCode", TaxCode},
+                             { "SalesAC", SalesAc},
+                             { "Unit",  unitId},
+                             { "Actual Quantity", data["ActualQuantity"] },
+                             { "FOC Quantity", data["FOCQuantity"] },
+                             { "Quantity", Convert.ToDecimal(data["ActualQuantity"].ToString())+ Convert.ToDecimal(data["FOCQuantity"].ToString()) },
+                             { "L-Sales Invoice - VAN", LinkList },
+                             { "Selling Price", data["SellingPrice"] },
+                             //{ "Rate", data["Price"] },
+                             //{ "Gross", data["LineAmount"] },
+                             //{ "Discount %", data["DiscPerc"] },
+                             { "Input Discount Amt", Convert.ToDecimal(data["DiscPerc"])*-1 },
+                             //{ "Input Discount Amt", data["LineDiscount"] },
+                             { "Add Charges", data["AddCharges"] },
+                             { "VAT", data["Vat"] },
+                             { "Batch", batcharr },
+                             { "MfgDate",MfgDate },
+                             { "ExpDate", ExpDate },
+                             { "Reference", RefList },
+                         };
+                            }
                         }
                         else
                         {
-                            row = new Hashtable()
+                            if (data["BatchId"].ToString() == "")
+                            {
+                                row = new Hashtable()
                          {
                              { "Item", ItemId},
                              //{ "Description", GetItemDes(ItemId)},
@@ -4009,10 +4010,37 @@ namespace PrjAlZajelFoods
                              //{ "Input Discount Amt", data["LineDiscount"] },
                              { "Add Charges", data["AddCharges"] },
                              { "VAT", data["Vat"] },
-                             { "Batch", data["Batch"] },
+                             { "Batch", data["Batch"].ToString() },
                              { "MfgDate",MfgDate },
                              { "ExpDate", ExpDate },
                          };
+                            }
+                            else
+                            {
+                                row = new Hashtable()
+                         {
+                             { "Item", ItemId},
+                             //{ "Description", GetItemDes(ItemId)},
+                             { "Description", data["Description"].ToString()},
+                             { "TaxCode", TaxCode},
+                             { "SalesAC", SalesAc},
+                             { "Unit",  unitId},
+                             { "Actual Quantity", data["ActualQuantity"] },
+                             { "FOC Quantity", data["FOCQuantity"] },
+                             //{ "Quantity", data["Qty"] },
+                             { "L-Sales Invoice - VAN", LinkList },
+                             { "Selling Price", data["SellingPrice"] },
+                             //{ "Rate", data["Price"] },
+                             //{ "Gross", data["LineAmount"] },
+                             { "Discount %", data["DiscPerc"] },
+                             //{ "Input Discount Amt", data["LineDiscount"] },
+                             { "Add Charges", data["AddCharges"] },
+                             { "VAT", data["Vat"] },
+                             { "Batch", batcharr },
+                             { "MfgDate",MfgDate },
+                             { "ExpDate", ExpDate },
+                         };
+                            }
                         }
                         body.Add(row);
                     }
@@ -4200,7 +4228,7 @@ namespace PrjAlZajelFoods
                                     else if (Convert.ToInt32(ds1.Tables[0].Rows[0][0]) == -1)
                                     {
                                         BL_Registry.SetLog("Invoice Found and it is Adjusted");
-                                        BodyLoopBreaks = true;
+                                        //BodyLoopBreaks = true;
                                     }
                                     else
                                     {
@@ -4209,7 +4237,7 @@ namespace PrjAlZajelFoods
                                         if (InvAmt < Convert.ToDecimal(data["Amount"].ToString()))
                                         {
                                             BL_Registry.SetLog("Invoice Found but the receipt amount is greater than invoice amount");
-                                            BodyLoopBreaks = true;
+                                            //BodyLoopBreaks = true;
                                         }
                                         else
                                         {
@@ -4650,7 +4678,7 @@ namespace PrjAlZajelFoods
                                     else if (ds1.Tables[0].Rows[0][0].ToString() == "-1")
                                     {
                                         BL_Registry.SetLog("Invoice Found and it is Adjusted");
-                                        BodyLoopBreaks = true;
+                                        //BodyLoopBreaks = true; //01/09/2022
                                     }
                                     else
                                     {
@@ -4659,7 +4687,7 @@ namespace PrjAlZajelFoods
                                         if (InvAmt < Convert.ToDecimal(data["Amount"].ToString()))
                                         {
                                             BL_Registry.SetLog("Invoice Found but the receipt amount is greater than invoice amount");
-                                            BodyLoopBreaks = true;
+                                            //BodyLoopBreaks = true; //01/09/2022
                                         }
                                         else
                                         {
@@ -5014,7 +5042,7 @@ namespace PrjAlZajelFoods
             }
         }
 
-        public DataSet GetReturnDSTranID(string DocNo, int ID, string BatchNo, int Type)
+        public DataSet GetReturnDSTranID(string DocNo, int ID, string BatchNo, int Type,string BatchId)
         {
             GetExternalData clsd = new GetExternalData();
             #region Default Acc
@@ -5038,9 +5066,40 @@ namespace PrjAlZajelFoods
                     join tcore_headerdata3335_0 uh with (ReadUnCommitted) on uh.iheaderid=d.iheaderid 
                     left join tCore_Batch_0 b on b.iBodyId=d.iBodyId
                     join tcore_data3335_0 ub with (ReadUnCommitted) on ub.ibodyid=d.ibodyid where tl.ilinkid={LinkPathId}
-                    and tl.bbase=1 and h.bsuspended=0  and h.sVoucherNo='{DocNo}' and iProduct={ID}
+                    and tl.bbase=1 and h.bsuspended=0  and h.sVoucherNo='{DocNo}' and iProduct={ID} and (iBatchId={BatchId} or '{BatchId}'='{BatchId}')
                     and (sBatchNo='{BatchNo}' or '{BatchNo}'='{BatchNo}'))a where (fvalue-linkvalue)>0";
+            BL_Registry.SetLog(sql);
+            ds = clsd.GetData(sql);
+            return ds;
+            #endregion
+        }
+        public DataSet GetReturnDSTranID2(string DocNo, int ID, string BatchNo, int Type)
+        {
+            GetExternalData clsd = new GetExternalData();
+            #region Default Acc
+            DataSet ds = new DataSet();
 
+            int LinkPathId = 0;
+            string sql = "";
+
+            string Lsql = $@"select ilinkpathid from vmCore_Links_0 with (ReadUnCommitted)  where BaseVoucherId=3335 and LinkVoucherId=1796 group by ilinkpathid,Basevoucherid";
+            DataSet lds = clsd.GetData(Lsql);
+            for (int i = 0; i < lds.Tables[0].Rows.Count; i++)
+            {
+                LinkPathId = Convert.ToInt32(lds.Tables[0].Rows[i]["ilinkpathid"]);
+            }
+
+            sql = $@"select svoucherno,iLinkId, (fvalue-linkvalue)penvalue,iproduct,ibodyid from  (select h.svoucherno,iLinkId,fvalue,
+                    i.iproduct,i.ibodyid, (select isnull(sum(fvalue),0) from tcore_links_0 tl1 where  tl1.bbase=0 
+                    and tl1.ilinkid=tl.ilinkid and tl1.irefid=tl.itransactionid)linkvalue from tcore_header_0 h with (ReadUnCommitted) 
+                    join tcore_data_0 d with (ReadUnCommitted) on d.iheaderid=h.iheaderid  join tcore_indta_0 i with (ReadUnCommitted) on i.ibodyid=d.ibodyid
+                    join tcore_links_0 tl with (ReadUnCommitted) on tl.itransactionid=d.itransactionid  
+                    join tcore_headerdata3335_0 uh with (ReadUnCommitted) on uh.iheaderid=d.iheaderid 
+                    left join tCore_Batch_0 b on b.iBodyId=d.iBodyId
+                    join tcore_data3335_0 ub with (ReadUnCommitted) on ub.ibodyid=d.ibodyid where tl.ilinkid={LinkPathId}
+                    and tl.bbase=1 and h.bsuspended=0  and h.sVoucherNo='{DocNo}' and iProduct={ID} 
+                    and (sBatchNo='{BatchNo}' or '{BatchNo}'='{BatchNo}'))a where (fvalue-linkvalue)>0";
+            BL_Registry.SetLog(sql);
             ds = clsd.GetData(sql);
             return ds;
             #endregion
